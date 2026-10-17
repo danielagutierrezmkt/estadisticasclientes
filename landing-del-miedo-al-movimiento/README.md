@@ -32,7 +32,6 @@ Reemplaza los archivos de `assets/` con el mismo nombre:
 
 - `foto-juntas.jpg` (hero, vertical 4:5)
 - `daniela.jpg` y `mama.jpg` (facilitadoras, vertical 4:5)
-- `daniela-sentada.jpg` (cierre, cuadrada)
 
 ## Publicar
 
