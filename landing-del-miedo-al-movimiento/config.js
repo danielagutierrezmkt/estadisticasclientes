@@ -19,15 +19,15 @@ window.LANDING_CONFIG = {
   fechas: {
     sabado: "",
     domingo: "",
-    horario: "",
-    zonaHoraria: ""
+    horario: "3:00 a 5:00 pm",
+    zonaHoraria: "hora de Venezuela (GMT-4)"
   },
 
   // Ejemplo: "Zoom"
-  plataforma: "",
+  plataforma: "Google Meet",
 
   // true = habrá grabación · false = no habrá · null = aún no se sabe (no se menciona en la página)
-  grabacion: null,
+  grabacion: true,
   // Ejemplo: "Acceso a la grabación durante 30 días"
   grabacionDetalle: "",
 
