@@ -49,26 +49,28 @@
       : "Es online y en vivo. Las fechas, horarios, zona horaria y plataforma se publicarán aquí. " + PEND);
 
   /* ---------- Botones de inscripción ---------- */
-  // Nunca se simula un pago: si no hay checkoutUrl, los botones llevan al contacto.
-  var url = C.checkoutUrl || C.contactUrl || "";
+  // Con checkoutUrl los botones van a la pasarela; sin él abren el panel de pago (checkout.js).
   $$(".js-cta").forEach(function (a) {
-    if (!url) return;
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener";
+    if (C.checkoutUrl) {
+      a.href = C.checkoutUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      return;
+    }
+    a.setAttribute("aria-haspopup", "dialog");
+    a.addEventListener("click", function (e) {
+      if (!window.openCheckout) return;
+      e.preventDefault();
+      window.openCheckout();
+    });
   });
-  var contactLink = C.contactUrl
-    ? '<a href="' + esc(C.contactUrl) + '" target="_blank" rel="noopener">' + esc(C.contactLabel || "Escríbenos") + "</a>"
-    : "";
   if (!C.checkoutUrl) {
-    setAll("[data-micro]",
-      "Inscripción sujeta a confirmación de fecha y disponibilidad." +
-      (contactLink ? " Mientras activamos el pago en línea, el botón te lleva a escribirnos para reservar." : ""));
+    setAll("[data-micro]", "Pagas por Zelle, Binance o Pago Móvil y nos envías los datos por WhatsApp desde el mismo formulario.");
   }
   setAll("[data-faq-como]",
     C.checkoutUrl
       ? 'Haz clic en el botón de inscripción y completa el pago. <a href="' + esc(C.checkoutUrl) + '" target="_blank" rel="noopener">Ir a la inscripción</a>.'
-      : "Haz clic en el botón de inscripción y te enviamos los datos para reservar tu cupo." + (contactLink ? " " + contactLink + "." : ""));
+      : "Toca cualquier botón de inscripción, elige Zelle, Binance o Pago Móvil y haz tu pago. Luego, desde el mismo formulario, nos envías los datos por WhatsApp junto con la captura del comprobante y te confirmamos tu cupo.");
 
   if (C.instagram) $$("[data-instagram]").forEach(function (a) { a.href = C.instagram; });
   setAll("[data-year]", String(new Date().getFullYear()));

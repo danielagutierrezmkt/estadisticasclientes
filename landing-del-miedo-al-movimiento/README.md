@@ -9,18 +9,17 @@ Landing estática (HTML + CSS + JS, sin dependencias) del intensivo en vivo de D
 | `index.html` | Estructura y textos de la página |
 | `styles.css` | Diseño (colores de marca, tipografías, responsive) |
 | `main.js` | Menú móvil, CTA fijo, FAQ, animaciones y lectura de la configuración |
-| `config.js` | **Todo lo pendiente de confirmar**: enlace de pago, fechas, horario, plataforma, grabación, recursos, reembolso |
+| `checkout.js` | Panel de pago: métodos, tasa del día y mensaje de WhatsApp |
+| `config.js` | Fechas, horario, plataforma, grabación, recursos, datos de pago, WhatsApp y tasa de respaldo |
 | `assets/` | Fotos ya recortadas y optimizadas |
 
-## Activar el pago
+## Pago (Zelle, Binance, Pago Móvil)
 
-Abre `config.js` y pega el enlace en `checkoutUrl`:
+Los botones de inscripción abren un panel lateral (`checkout.js`) donde la persona deja su nombre y correo, elige el método, ve los datos para pagar (con botón de copiar) y llena los datos de su pago. El botón final abre WhatsApp (`whatsapp` en `config.js`) con el mensaje ya escrito; la captura del comprobante la adjunta ahí.
 
-```js
-checkoutUrl: "https://tu-enlace-de-pago",
-```
-
-Mientras `checkoutUrl` esté vacío, todos los botones llevan a `contactUrl` (por defecto, el Instagram) y bajo el precio aparece una nota que lo explica. La página nunca simula un pago.
+- Datos de cada método: `pagos` en `config.js`.
+- Monto en bolívares: se calcula con la tasa paralela de `tasa.api` (DolarApi). Si la API no responde, usa `tasa.respaldo`.
+- Si algún día usas una pasarela externa, pega su enlace en `checkoutUrl` y los botones irán ahí en lugar del panel.
 
 ## Completar fechas y detalles
 

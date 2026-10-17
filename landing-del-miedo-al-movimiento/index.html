@@ -288,8 +288,116 @@
     <a class="btn btn--sm js-cta" href="#precio" tabindex="-1">Reservar cupo</a>
   </div>
 </div>
+
+<div class="co" id="checkout" hidden>
+  <div class="co__overlay" data-co-close></div>
+  <aside class="co__panel light" role="dialog" aria-modal="true" aria-labelledby="co-title">
+    <header class="co__head">
+      <div>
+        <p class="co__kicker">Del miedo al movimiento</p>
+        <h2 class="co__title" id="co-title">Completar inscripción</h2>
+      </div>
+      <button type="button" class="co__x" data-co-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+
+    <form class="co__body" id="co-form" novalidate>
+      <section class="co__step" data-co-contacto>
+        <h3 class="co__h"><span class="co__n">1</span>Tus datos</h3>
+        <div class="co__field">
+          <label for="co-nombre">Nombre y apellido <span class="co__req">*</span></label>
+          <input id="co-nombre" name="nombre" type="text" autocomplete="name" placeholder="María González" required data-msg="Nombre">
+        </div>
+        <div class="co__field">
+          <label for="co-correo">Correo electrónico <span class="co__req">*</span></label>
+          <input id="co-correo" name="correo" type="email" autocomplete="email" inputmode="email" placeholder="maria@correo.com" required data-msg="Correo">
+          <p class="co__help">Aquí te llega el enlace de Google Meet y la grabación.</p>
+        </div>
+      </section>
+
+      <section class="co__step">
+        <h3 class="co__h"><span class="co__n">2</span>Método de pago</h3>
+        <div class="co__methods" role="radiogroup" aria-label="Método de pago">
+          <label class="co__method"><input type="radio" name="metodo" value="zelle" id="co-m-zelle"><span class="co__mi" aria-hidden="true">Z</span><span class="co__ml">Zelle</span><span class="co__mt">$40 USD</span></label>
+          <label class="co__method"><input type="radio" name="metodo" value="binance" id="co-m-binance"><span class="co__mi" aria-hidden="true">B</span><span class="co__ml">Binance</span><span class="co__mt">40 USDT</span></label>
+          <label class="co__method"><input type="radio" name="metodo" value="pagomovil" id="co-m-pm"><span class="co__mi" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></span><span class="co__ml">Pago Móvil</span><span class="co__mt" data-co-bs>Bs</span></label>
+        </div>
+
+        <div class="co__pane" data-pane="zelle" hidden>
+          <div class="co__data">
+            <p class="co__data-t">Datos para pagar por Zelle</p>
+            <dl data-co-datos="zelle"></dl>
+            <p class="co__amount">Monto a enviar <strong>$40.00 USD</strong></p>
+          </div>
+          <div class="co__field">
+            <label for="co-z-titular">Titular de tu cuenta Zelle <span class="co__req">*</span></label>
+            <input id="co-z-titular" type="text" autocomplete="off" placeholder="Nombre de quien envía" required data-msg="Titular de la cuenta Zelle">
+          </div>
+          <div class="co__field">
+            <label for="co-z-conf">Número de confirmación <span class="co__req">*</span></label>
+            <input id="co-z-conf" type="text" autocomplete="off" placeholder="Ej: ABC123XYZ" required data-msg="Número de confirmación">
+          </div>
+          <div class="co__field">
+            <label for="co-z-monto">Monto enviado (USD) <span class="co__req">*</span></label>
+            <input id="co-z-monto" type="text" inputmode="decimal" value="40" required data-msg="Monto" data-suffix=" USD">
+          </div>
+        </div>
+
+        <div class="co__pane" data-pane="binance" hidden>
+          <div class="co__data">
+            <p class="co__data-t">Datos para pagar por Binance Pay</p>
+            <dl data-co-datos="binance"></dl>
+            <p class="co__amount">Monto a enviar <strong>40 USDT</strong></p>
+          </div>
+          <div class="co__field">
+            <label for="co-b-user">Usuario o correo de Binance desde donde enviaste <span class="co__req">*</span></label>
+            <input id="co-b-user" type="text" autocomplete="off" placeholder="Ej: maria_g o maria@correo.com" required data-msg="Usuario de Binance">
+          </div>
+          <div class="co__field">
+            <label for="co-b-monto">Monto enviado (USDT) <span class="co__req">*</span></label>
+            <input id="co-b-monto" type="text" inputmode="decimal" value="40" required data-msg="Monto" data-suffix=" USDT">
+          </div>
+        </div>
+
+        <div class="co__pane" data-pane="pagomovil" hidden>
+          <div class="co__data">
+            <p class="co__data-t">Datos para Pago Móvil</p>
+            <dl data-co-datos="pagomovil"></dl>
+            <p class="co__amount">Monto a enviar <strong data-co-bs>Bs</strong></p>
+            <p class="co__rate" data-co-tasa></p>
+          </div>
+          <div class="co__field">
+            <label for="co-pm-ref">Número de referencia <span class="co__req">*</span></label>
+            <input id="co-pm-ref" type="text" inputmode="numeric" autocomplete="off" placeholder="Últimos dígitos de la referencia" required data-msg="Referencia">
+          </div>
+          <div class="co__field">
+            <label for="co-pm-tel">Teléfono desde donde pagaste <span class="co__req">*</span></label>
+            <input id="co-pm-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej: 0414-0000000" required data-msg="Teléfono que pagó">
+          </div>
+          <div class="co__field">
+            <label for="co-pm-monto">Monto enviado (Bs) <span class="co__req">*</span></label>
+            <input id="co-pm-monto" type="text" inputmode="decimal" required data-msg="Monto" data-suffix=" Bs">
+          </div>
+        </div>
+      </section>
+
+      <section class="co__step co__sum">
+        <h3 class="co__h co__h--plain">Resumen</h3>
+        <div class="co__line"><span>Del miedo al movimiento <small>× 1</small></span><span data-co-usd>$40.00</span></div>
+        <div class="co__line co__line--total"><span>Total</span><span><span data-co-usd>$40.00</span> USD</span></div>
+        <div class="co__line co__line--bs" data-co-sum-bs hidden><span>En bolívares</span><span data-co-bs>Bs</span></div>
+      </section>
+
+      <div class="co__foot">
+        <p class="co__hint">Al tocar el botón se abre WhatsApp con tu mensaje listo. Antes de enviarlo, adjunta la captura del comprobante.</p>
+        <a class="btn btn--block co__send co__send--off" id="co-send" href="#co-form" target="_blank" rel="noopener" aria-disabled="true">Selecciona un método de pago</a>
+        <p class="co__err" id="co-err" role="alert" aria-live="polite"></p>
+      </div>
+    </form>
+  </aside>
+</div>
 <!--/BODY-->
 <script src="config.js"></script>
+<script src="checkout.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
