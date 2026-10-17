@@ -34,8 +34,7 @@ window.LANDING_CONFIG = {
   // Recursos incluidos (confirmar antes de publicar)
   recursos: [
     "Workbook digital",
-    "Ejercicios guiados",
-    "Plantilla de organización de contenido"
+    "Ejercicios guiados"
   ],
 
   // Ejemplo: "Reembolso completo hasta 48 horas antes del inicio"
