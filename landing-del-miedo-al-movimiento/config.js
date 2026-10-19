@@ -40,8 +40,8 @@ window.LANDING_CONFIG = {
 
   // Fechas y horario. Ejemplo: sabado: "Sábado 14 de noviembre", horario: "10:00 a 12:00", zonaHoraria: "hora de Venezuela (GMT-4)"
   fechas: {
-    sabado: "31 de octubre",
-    domingo: "1 de noviembre",
+    sabado: "7 de noviembre",
+    domingo: "8 de noviembre",
     horario: "3:00 a 5:00 pm",
     zonaHoraria: "hora de Venezuela (GMT-4)"
   },
